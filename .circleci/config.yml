@@ -30,8 +30,7 @@ jobs:
           command: |
             python -m virtualenv virtualenv
             . virtualenv/bin/activate
-            pip install -r requirements/system/ubuntu/apt-packages.txt
-            pip install -r requirements/system/ubuntu/apt-repos.txt
+            apt-get install $(grep -vE "^\s*#" apt-packages.txt  | tr "\n" " ")
             pip install -r requirements/edx/base.txt
             pip install -r requirements/philu/base.txt
       - save_cache:
