@@ -30,6 +30,7 @@ jobs:
           command: |
             python -m virtualenv virtualenv
             . virtualenv/bin/activate
+            sudo apt install software-properties-common
             sudo add-apt-repository $(cat requirements/system/ubuntu/apt-repos.txt)
             sudo apt-get update
             sudo apt-get install $(cat requirements/system/ubuntu/apt-packages.txt)
