@@ -20,6 +20,23 @@ jobs:
     steps:
       - checkout
 
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            python -m virtualenv virtualenv
+            . virtualenv/bin/activate
+            pip install -r requirements/edx/base.txt
+            pip install -r requirements/philu/base.txt
+      - save_cache:
+          paths:
+            - ./virtualenv
+          key: v1-dependencies-{{ checksum "requirements" }}
+
       # run tests!
       # this example uses Django's built-in test-runner
       # other common Python testing frameworks include pytest and nose
@@ -29,7 +46,6 @@ jobs:
           name: run tests
           command: |
             ./scripts/all-tests.sh
-
       - store_artifacts:
           path: test-reports
           destination: test-reports
