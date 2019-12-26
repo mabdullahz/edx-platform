@@ -30,7 +30,7 @@ jobs:
           command: |
             python -m virtualenv virtualenv
             . virtualenv/bin/activate
-            sudo apt-get install $(cat apt-packages.txt)
+            sudo apt-get install $(cat requirements/system/ubuntu/apt-packages.txt)
             pip install -r requirements/edx/base.txt
             pip install -r requirements/philu/base.txt
       - save_cache:
