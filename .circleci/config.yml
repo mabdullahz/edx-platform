@@ -30,7 +30,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r /requirements
+            pip install -r requirements/base.txt
 
       - save_cache:
           paths:
