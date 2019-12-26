@@ -45,8 +45,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            . virtualenv/bin/activate
-            python manage.py test
+            ./scripts/all-tests.sh
 
       - store_artifacts:
           path: test-reports
