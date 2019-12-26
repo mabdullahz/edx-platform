@@ -28,14 +28,22 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            sudo apt install software-properties-common
+            
+      - run:
+          name: install dependencies
+          command: |
+            sudo add-apt-repository $(cat requirements/system/ubuntu/apt-repos.txt) && sudo apt-get update
+            sudo apt-get install $(cat requirements/system/ubuntu/apt-packages.txt)
+
+      - run:
+          name: install dependencies
+          command: |
             python -m virtualenv virtualenv
             . virtualenv/bin/activate
-            sudo apt install software-properties-common
-            sudo add-apt-repository $(cat requirements/system/ubuntu/apt-repos.txt)
-            sudo apt-get update
-            sudo apt-get install $(cat requirements/system/ubuntu/apt-packages.txt)
             pip install -r requirements/edx/base.txt
             pip install -r requirements/philu/base.txt
+
       - save_cache:
           paths:
             - ./virtualenv
