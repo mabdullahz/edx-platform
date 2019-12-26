@@ -35,7 +35,7 @@ jobs:
           command: |
             sudo add-apt-repository ppa:chris-lea/node.js
             sudo add-apt-repository ppa:chris-lea/node.js-libs
-            sudo add-apt-repository ppa:chris-lea/libjs-underscore
+            sudo add-apt-repository -y ppa:chris-lea/libjs-underscore
             sudo apt-get update
             sudo apt-get install $(cat requirements/system/ubuntu/apt-packages.txt)
 
